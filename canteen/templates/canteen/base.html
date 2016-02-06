@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}——深圳实验学校创客社</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'homepage' %}">Order</a></li>
+        </ul>
+    </nav>
+    {% block header %}{% endblock %}
+</header>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

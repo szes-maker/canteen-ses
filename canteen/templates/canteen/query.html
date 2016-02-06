@@ -1,0 +1,37 @@
+{% extends "canteen/base.html" %}
+
+{% block title %}
+    {{ selected_year }}年{{ selected_month }}月
+{% endblock %}
+{% block header %}
+    {{ name }}，余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
+{% endblock %}
+{% block content %}
+    <form action="#" method="post">
+        {% csrf_token %}
+        <select id="year" name="year">
+            {% for year in year_list %}
+                <option value="{{ year }}"{% if year == selected_year %}
+                        selected="selected"{% endif %}>{{ year }}</option>
+            {% endfor %}
+        </select>
+        <label for="year">年</label>
+        <select id="month" name="month">
+            {% for month in month_list %}
+                <option value="{{ month }}"{% if month == selected_month %}
+                        selected="selected"{% endif %}>{{ month }}</option>
+            {% endfor %}
+        </select>
+        <label for="month">月</label>
+        <input type="submit" value="Query"/>
+    </form>
+    <ul id="l{{ selected_year }}-{{ selected_month }}">
+        {% for day in current_date_list %}
+            <li>
+                <a href="{% url 'menu' year=selected_year month=selected_month day=day %}">{{ selected_year }}年{{ selected_month }}月{{ day }}日</a>
+            </li>
+        {% empty %}
+            <li>本月无可订餐的日期</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

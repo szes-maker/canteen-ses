@@ -1,0 +1,15 @@
+{% extends "canteen/base.html" %}
+
+{% block title %}
+    在用django-messages之后要被删掉的结果页
+{% endblock %}
+{% block header %}
+    欢迎，{{ name }} <a href="{% url 'logout' %}">退出</a>
+{% endblock %}
+{% block content %}
+    {% if result %}
+        订餐成功
+    {% else %}
+        订餐失败
+    {% endif %}
+{% endblock %}

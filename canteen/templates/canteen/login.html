@@ -1,0 +1,16 @@
+{% extends "canteen/base.html" %}
+{% block title %}请登陆{% endblock %}
+
+{% block header %}
+    请登陆
+{% endblock %}
+{% block content %}
+    <form action="#" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" value="Student ID">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Login">
+    </form>
+{% endblock %}
