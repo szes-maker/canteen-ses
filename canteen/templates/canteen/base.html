@@ -1,20 +1,23 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}——深圳实验学校创客社</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'canteen/style.css' %}">
     {% block head %}{% endblock %}
 </head>
 <body>
 <header>
+    <span class="brand">深圳实验学校高中部创客社</span>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="{% url 'homepage' %}">Order</a></li>
+            <li class="active"><a href="{% url 'homepage' %}">Order</a></li>
         </ul>
     </nav>
-    {% block header %}{% endblock %}
+    <div class="text">{% block header %}{% endblock %}</div>
 </header>
 <div id="content">
     {% block content %}{% endblock %}

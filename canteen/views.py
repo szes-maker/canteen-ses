@@ -16,30 +16,18 @@ def homepage(request):
             month = request.POST.get('month', '')
             return HttpResponseRedirect(reverse('query', kwargs={'year': year, 'month': month}))
         else:
-            cookies = request.session.get('cookies', None)
-            try:
-                calendar = Calendar.calendar_init(cookies)
-                cookies = calendar.cookies
-            except SessionExpired:
-                print("logout")
-                return HttpResponseRedirect('/canteen/logout/')
+            selected = request.session.get('calendar_selected', None)
+            selectable_year = request.session.get('selectable_year', None)
+            calendar_dict = request.session.get('calendar_dict', None)
+            calendar = Calendar(selected, None, selectable_year, calendar_dict, None)
+
             context = {
-                'year_list': calendar.selectable_year,
+                'calendar': calendar,
                 'month_list': range(1, 13),
-                'selected_year': calendar.selected_year,
-                'selected_month': calendar.selected_month,
-                'current_date_list': calendar.current(),
                 'name': request.session['name'],
                 'balance': request.session['balance'],
                 'id': request.session['id']
             }
-            request.session.update({
-                'cookies': cookies,
-                'calendar_form_param': calendar.form_param,
-                'calendar_dict': calendar,
-                'selectable_year': calendar.selectable_year,
-                'calendar_selected': [calendar.selected_year, calendar.selected_month]
-            })
             return render(request, 'canteen/homepage.html', context=context)
     else:
         return HttpResponseRedirect('/canteen/login/')
@@ -61,14 +49,15 @@ def query(request, year, month):
             init_dict = request.session.get('calendar_dict', None)
             calendar = Calendar(selected, form_param, selectable_year, init_dict, cookies)
 
-            calendar.test(year, month)
+            try:
+                calendar.test(year, month)
+            except SessionExpired:
+                request.session.flush()
+                return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
             cookies = calendar.cookies
             context = {
-                'year_list': calendar.selectable_year,
+                'calendar': calendar,
                 'month_list': range(1, 13),
-                'selected_year': calendar.selected_year,
-                'selected_month': calendar.selected_month,
-                'current_date_list': calendar.current(),
                 'name': request.session['name'],
                 'balance': request.session['balance'],
                 'id': request.session['id']
@@ -81,7 +70,7 @@ def query(request, year, month):
             })
             return render(request, 'canteen/query.html', context=context)
     else:
-        return HttpResponseRedirect('/canteen/login/')
+        return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
 
 
 def menu(request, year, month, day):
@@ -93,7 +82,13 @@ def menu(request, year, month, day):
             month.zfill(2),
             day.zfill(2)
         )
-        menu_helper = Menu(date, cookies)
+
+        try:
+            menu_helper = Menu(date, cookies)
+        except SessionExpired:
+            request.session.flush()
+            return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
+
         request.session.update({
             'cookies': menu_helper.session.extract_cookies(),
             'form_param_' + date: menu_helper.form_param,
@@ -109,7 +104,7 @@ def menu(request, year, month, day):
         }
         return render(request, 'canteen/menu.html', context)
     else:
-        return HttpResponseRedirect('/canteen/login/')
+        return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
 
 
 def submit(request, year, month, day):
@@ -162,20 +157,34 @@ def login(request):
         auth_status, payload = login_helper.login_cas(username, password, cas_param)
 
         if auth_status:
+            # 用于清理
+            try:
+                del request.session['cas_param']
+            except KeyError:
+                pass
+
             name, balance = login_helper.login_card_system()
+            calendar = Calendar.calendar_init(login_helper.session)
+            cookies = calendar.cookies
             request.session.update({
                 'id': username,
                 'name': name,
                 'balance': balance,
+                'calendar_form_param': calendar.form_param,
+                'calendar_dict': calendar,
+                'selectable_year': calendar.selectable_year,
+                'calendar_selected': [calendar.selected_year, calendar.selected_month]
             })
         else:
             request.session['cas_param'] = payload
+            cookies = login_helper.session.extract_cookies()
 
-        cookies = login_helper.session.extract_cookies()
         request.session['cookies'] = cookies
+    else:
+        request.session['url'] = request.GET.get('next', '/canteen/')
 
     if request.session.get('id', False):
-        return HttpResponseRedirect('/canteen/')
+        return HttpResponseRedirect(request.session['url'])
     else:
         return render(request, 'canteen/login.html')
 

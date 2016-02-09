@@ -5,12 +5,18 @@
     请登陆
 {% endblock %}
 {% block content %}
-    <form action="#" method="post">
+    <form class="login-form" action="#" method="post">
         {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" placeholder="Student ID">
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <div>
+            <label for="username" class="title">Username</label>
+            <input type="text" name="username" id="username" placeholder="Student ID">
+        </div>
+        <div>
+            <label for="password" class="title">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div class="submit">
         <input type="submit" value="Login">
+        </div>
     </form>
 {% endblock %}

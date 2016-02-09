@@ -180,10 +180,10 @@ class Calendar(dict):
     def __init__(self, selected, form_param, selectable_year, init_dict, cookies):
         """
         :type selected: list[int]
-        :type form_param: list[str]
+        :type form_param: list[str] or NoneType
         :type selectable_year: list[str]
         :type init_dict: dict[str, str]
-        :type cookies: dict
+        :type cookies: dict or NoneType
         :param selected: [选中的年份, 选中的月份]
         :param selectable_year: [可选的年份]
         """
@@ -197,12 +197,12 @@ class Calendar(dict):
         self.cookies = cookies
 
     @classmethod
-    def calendar_init(cls, cookies):
+    def calendar_init(cls, session):
         """
         第一次访问选择日期的页面
-        :type cookies: dict
+        我决定在登录后直接初始化菜单，以利用登录“一卡通”系统时的Session，减少等待时间
+        :type session: Session
         """
-        session = Session(cookies)
         calendar = session.s_get(CALENDAR_URL, referrer='http://gzb.szsy.cn/card/Default.aspx')
         page = calendar.text
         form_param = _get_web_forms_field(page)

@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #f8f8f8;
+    margin-bottom: 1em;
+}
+
+.brand {
+    font-size: 0.75em;
+    text-align: left;
+}
+
+nav {
+    display: inline-block;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+nav li {
+    display: inline-block;
+    padding: 0.5em;
+}
+
+nav li.active {
+    background-color: white;
+}
+
+nav a {
+    font-size: 150%;
+    color: #777;
+    text-decoration: none;
+}
+
+header .text {
+    float: right;
+    padding: 0.5em;
+}
+
+form.login-form div {
+    margin: 1em;
+}
+
+form .title {
+    width: 8em;
+    float: left;
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+form .submit {
+    text-align: right;
+}
+
+ul.date-list {
+    display: inline-block;
+}
+
+table.menu {
+    border-collapse: collapse;
+    margin-bottom: 0.5em;
+}
+
+table.menu th, td {
+    border: 1px solid black;
+}
+
+.not-order {
+    float: right;
+}

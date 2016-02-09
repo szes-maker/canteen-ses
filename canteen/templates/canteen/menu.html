@@ -3,19 +3,21 @@
     {{ year }}-{{ month }}-{{ day }}菜单
 {% endblock %}
 {% block header %}
-    {{ id }}{{ name }} <a href="{% url 'logout' %}">退出</a>
+    {{ id }}，{{ name }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
     <form method="post" action="{% url 'submit' year month day %}">
         {% csrf_token %}
         {% for meal in menu %}
-            <table>
+            <table class="menu">
                 <thead>
                 <tr>
-                    <th colspan="5">{{ meal.name }}<input
-                            {% if not menu.mutable %}disabled="disabled" {% endif %}type="checkbox"
-                            name="d{{ meal.id }}" id="d{{ meal.id }}"{% if meal.id in menu.do_not_order %}
-                            checked="checked"{% endif %}><label for="d{{ meal.id }}">不订餐</label></th>
+                    <th colspan="5">{{ meal.name }}
+                        <div class="not-order"><input
+                                {% if not menu.mutable %}disabled="disabled" {% endif %}type="checkbox"
+                                name="d{{ meal.id }}" id="d{{ meal.id }}"{% if meal.id in menu.do_not_order %}
+                                checked="checked"{% endif %}><label for="d{{ meal.id }}">不订餐</label></div>
+                    </th>
                 </tr>
                 <tr>
                     <th>编号</th>

@@ -1,0 +1,27 @@
+<form action="#" method="post">
+    {% csrf_token %}
+    <select id="year" name="year">
+        {% for year in calendar.selectable_year %}
+            <option value="{{ year }}"{% if year == calendar.selected_year %}
+                    selected="selected"{% endif %}>{{ year }}</option>
+        {% endfor %}
+    </select>
+    <label for="year">年</label>
+    <select id="month" name="month">
+        {% for month in month_list %}
+            <option value="{{ month }}"{% if month == calendar.selected_month %}
+                    selected="selected"{% endif %}>{{ month }}</option>
+        {% endfor %}
+    </select>
+    <label for="month">月</label>
+    <input type="submit" value="Query"/>
+</form>
+<ul class="date-list" id="l{{ calendar.selected_year }}-{{ calendar.selected_month }}">
+    {% for day in calendar.current %}
+        <li>
+            <a href="{% url 'menu' year=calendar.selected_year month=calendar.selected_month day=day %}">{{ calendar.selected_year }}年{{ calendar.selected_month }}月{{ day }}日</a>
+        </li>
+    {% empty %}
+        <li>本月无可订餐的日期</li>
+    {% endfor %}
+</ul>
