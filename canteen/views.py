@@ -5,7 +5,7 @@ from django.shortcuts import render
 from .canteen_utils import *
 
 
-def login_required(request, login_url='/canteen/login/'):
+def login_required(request, login_url='/login/'):
     pass
 
 
@@ -30,7 +30,7 @@ def homepage(request):
             }
             return render(request, 'canteen/homepage.html', context=context)
     else:
-        return HttpResponseRedirect('/canteen/login/')
+        return HttpResponseRedirect('/login/')
 
 
 def query(request, year, month):
@@ -53,7 +53,7 @@ def query(request, year, month):
                 calendar.test(year, month)
             except SessionExpired:
                 request.session.flush()
-                return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
+                return HttpResponseRedirect('/login/?next={}'.format(request.path))
             cookies = calendar.cookies
             context = {
                 'calendar': calendar,
@@ -70,7 +70,7 @@ def query(request, year, month):
             })
             return render(request, 'canteen/query.html', context=context)
     else:
-        return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
+        return HttpResponseRedirect('/login/?next={}'.format(request.path))
 
 
 def menu(request, year, month, day):
@@ -87,7 +87,7 @@ def menu(request, year, month, day):
             menu_helper = Menu(date, cookies)
         except SessionExpired:
             request.session.flush()
-            return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
+            return HttpResponseRedirect('/login/?next={}'.format(request.path))
 
         request.session.update({
             'cookies': menu_helper.session.extract_cookies(),
@@ -104,7 +104,7 @@ def menu(request, year, month, day):
         }
         return render(request, 'canteen/menu.html', context)
     else:
-        return HttpResponseRedirect('/canteen/login/?next={}'.format(request.path))
+        return HttpResponseRedirect('/login/?next={}'.format(request.path))
 
 
 def submit(request, year, month, day):
@@ -140,9 +140,9 @@ def submit(request, year, month, day):
             }
             return render(request, 'canteen/result.html', context)
         else:
-            return HttpResponseRedirect('/canteen/menu/{0}/{1}/{2}/'.format(year, month, day))
+            return HttpResponseRedirect('/menu/{0}/{1}/{2}/'.format(year, month, day))
     else:
-        return HttpResponseRedirect('/canteen/login/')
+        return HttpResponseRedirect('/login/')
 
 
 def login(request):
@@ -181,7 +181,7 @@ def login(request):
 
         request.session['cookies'] = cookies
     else:
-        request.session['url'] = request.GET.get('next', '/canteen/')
+        request.session['url'] = request.GET.get('next', '/')
 
     if request.session.get('id', False):
         return HttpResponseRedirect(request.session['url'])
@@ -196,4 +196,4 @@ def logout(request):
         login_helper.canteen_logout()
         request.session.flush()
 
-    return HttpResponseRedirect('/canteen/login/')
+    return HttpResponseRedirect('/login/')
