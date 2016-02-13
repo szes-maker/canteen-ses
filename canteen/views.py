@@ -153,6 +153,7 @@ def login(request):
         cas_param = request.session.get('cas_param', None)
         cookies = request.session.get('cookies', None)
 
+        request.session['login_lock'] = True
         login_helper = Login(cookies)
         auth_status, payload = login_helper.login_cas(username, password, cas_param)
 
