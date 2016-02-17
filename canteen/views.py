@@ -146,7 +146,7 @@ def submit(request, year, month, day):
 
 
 def login(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and not request.session.get('id', False):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         # 用于处理登录失败
