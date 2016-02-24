@@ -65,6 +65,7 @@ ul.date-list {
 table.menu {
     border-collapse: collapse;
     margin-bottom: 0.5em;
+    table-layout: fixed;
 }
 
 table.menu th, td {
@@ -73,4 +74,8 @@ table.menu th, td {
 
 .not-order {
     float: right;
+}
+
+th.scroll {
+    width: 5em;
 }

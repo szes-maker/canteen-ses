@@ -378,7 +378,7 @@ def gen_menu_param(course_amount):
     param_string = ''
     for k, v in course_amount.items():
         # {0}用于和自己拼在一起。{1[0]}为key中的第一个数，即meal_order，{1[1]}即course
-        param_string = '{0}Repeater1_GvReport_{1[0]}_TxtNum_{1[1]}@{2}|'.format(
+        param_string = '{0}Repeater1_GvReport_{1[0]}_TxtNum_{1[2]}@{2}|'.format(
             param_string, k, v
         )
 
