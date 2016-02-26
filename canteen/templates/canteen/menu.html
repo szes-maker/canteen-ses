@@ -22,7 +22,7 @@
                 <tr>
                     <th>编号</th>
                     <th>类型</th>
-                    <th class="scroll">菜名</th>
+                    <th>菜名</th>
                     <th>单价</th>
                     <th>份数</th>
                 </tr>
@@ -32,9 +32,9 @@
                     <tr>
                         <td>{{ course.num }}</td>
                         <td>{{ course.type }}</td>
-                        <td>{{ course.name }}</td>
+                        <td class="name">{{ course.name }}</td>
                         <td>{{ course.price }}</td>
-                        <td>
+                        <td class="selector">
                             {% for course_count in course.iter %}
                                 <input type="radio" id="c{{ meal.id }}-{{ course.id }}-{{ course_count }}"
                                        name="{{ meal.id }}-{{ course.id }}" value="{{ course_count }}"

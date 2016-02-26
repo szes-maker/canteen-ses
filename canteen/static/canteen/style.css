@@ -72,10 +72,20 @@ table.menu th, td {
     border: 1px solid black;
 }
 
-.not-order {
-    float: right;
+table.menu td {
+    font-size: 75%;
 }
 
-th.scroll {
-    width: 5em;
+table.menu td.name {
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 7em;
+}
+
+table.menu td.selector {
+    font-size: 100%
+}
+
+.not-order {
+    float: right;
 }
