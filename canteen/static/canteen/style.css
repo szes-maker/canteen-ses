@@ -20,7 +20,6 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-
 }
 
 nav li {
@@ -65,7 +64,6 @@ ul.date-list {
 table.menu {
     border-collapse: collapse;
     margin-bottom: 0.5em;
-    table-layout: fixed;
 }
 
 table.menu th, td {
@@ -79,7 +77,7 @@ table.menu td {
 table.menu td.name {
     white-space: nowrap;
     overflow-x: auto;
-    max-width: 7em;
+    max-width: 5.5em;
 }
 
 table.menu td.selector {
