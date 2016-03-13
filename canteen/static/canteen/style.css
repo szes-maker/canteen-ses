@@ -7,9 +7,8 @@ header {
     margin-bottom: 1em;
 }
 
-.brand {
-    font-size: 0.75em;
-    text-align: left;
+.logo {
+    width: 200px;
 }
 
 nav {
@@ -39,6 +38,7 @@ nav a {
 
 header .text {
     float: right;
+    clear: left;
     padding: 0.5em;
 }
 
@@ -86,4 +86,8 @@ table.menu td.selector {
 
 .not-order {
     float: right;
+}
+
+input[type="submit"].menu {
+    width: 15em;
 }

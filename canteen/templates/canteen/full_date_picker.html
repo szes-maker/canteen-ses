@@ -14,7 +14,7 @@
         {% endfor %}
     </select>
     <label for="month">月</label>
-    <input type="submit" value="Query"/>
+    <input type="submit" value="查询"/>
 </form>
 <ul class="date-list" id="l{{ calendar.selected_year }}-{{ calendar.selected_month }}">
     {% for day in calendar.current %}

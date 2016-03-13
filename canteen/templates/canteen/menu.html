@@ -47,9 +47,11 @@
                 {% endfor %}
                 </tbody>
             </table>
+        {% empty %}
+        此日无菜单
         {% endfor %}
         {% if menu.mutable %}
-            <input type="submit" value="Submit">
+            <input class="menu" type="submit" value="提交">
         {% endif %}
     </form>
 {% endblock %}

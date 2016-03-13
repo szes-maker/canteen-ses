@@ -1,22 +1,22 @@
 {% extends "canteen/base.html" %}
-{% block title %}请登陆{% endblock %}
+{% block title %}请登录{% endblock %}
 
 {% block header %}
-    请登陆
+    请登录
 {% endblock %}
 {% block content %}
     <form class="login-form" action="#" method="post">
         {% csrf_token %}
         <div>
-            <label for="username" class="title">Username</label>
+            <label for="username" class="title">用户名</label>
             <input type="text" name="username" id="username" placeholder="Student ID">
         </div>
         <div>
-            <label for="password" class="title">Password</label>
+            <label for="password" class="title">密码</label>
             <input type="password" name="password" id="password">
         </div>
         <div class="submit">
-        <input type="submit" value="Login">
+        <input type="submit" value="登录">
         </div>
     </form>
 {% endblock %}

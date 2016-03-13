@@ -328,7 +328,7 @@ class Menu(list):
 
         if '<a onclick="return subs();"' in page:
             self.mutable = True
-        elif '<a onclick="return msg();"' in page:
+        elif '<a onclick="return msg();"' or meal_count == 0 in page:
             self.mutable = False
 
         tree = html.fromstring(page)
