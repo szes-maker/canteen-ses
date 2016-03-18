@@ -9,7 +9,7 @@ web:
   command: /code/manage.py runserver 0.0.0.0:8000
 
 postgres:
-  image: daocloud.io/postgres:latest
+  image: postgres:latest
   environment:
     - POSTGRES_PASSWORD=maker_club
   ports:
