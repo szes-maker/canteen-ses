@@ -14,6 +14,6 @@ RUN mkdir /code
 COPY . /code
 WORKDIR /code
 # RUN manage.py migrate
-# EXPOSE 8000
+EXPOSE 80
 
 # CMD gunicorn ses_maker.wsgi --log-file - --workers 2
