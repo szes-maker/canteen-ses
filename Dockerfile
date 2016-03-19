@@ -13,7 +13,6 @@ RUN pip install -r /tmp/requirements.txt
 RUN mkdir /code
 COPY . /code
 WORKDIR /code
-# RUN manage.py migrate
 EXPOSE 80
 
-# CMD gunicorn ses_maker.wsgi --log-file - --workers 2
+ENTRYPOINT ["/code/docker-entrypoint.sh"]
