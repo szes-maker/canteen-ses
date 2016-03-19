@@ -13,7 +13,7 @@ RUN pip install -r /tmp/requirements.txt
 RUN mkdir /code
 COPY . /code
 WORKDIR /code
-RUN manage.py migrate
-EXPOSE 8000
+# RUN manage.py migrate
+# EXPOSE 8000
 
-CMD gunicorn ses_maker.wsgi --log-file - --workers 2
+# CMD gunicorn ses_maker.wsgi --log-file - --workers 2
