@@ -16,7 +16,7 @@
     <label for="month">月</label>
     <input type="submit" value="查询"/>
 </form>
-<p>理论上说，现在能订到{{ calendar.orderable_day }}及以后的餐。<p>
+<p>理论上说，现在能订到{{ calendar.orderable_day }}及以后的餐。</p>
 <ul class="date-list" id="l{{ calendar.selected_year }}-{{ calendar.selected_month }}">
     {% for date in calendar.current %}
         <li>
