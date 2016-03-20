@@ -6,6 +6,7 @@
     {{ id }}，{{ name }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
+    <p>注意：现在“不订餐”尚不能正常工作。</p>
     <form method="post" action="{% url 'submit' year month day %}">
         {% csrf_token %}
         {% for meal in menu %}
