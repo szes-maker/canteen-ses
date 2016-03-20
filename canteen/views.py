@@ -124,7 +124,7 @@ def submit(request, year, month, day):
             del cleaned_post['csrfmiddlewaretoken']
 
             do_not_order_current = set()
-            for key in cleaned_post.keys():
+            for key in list(cleaned_post.keys()):
                 if key[0] == 'd':
                     do_not_order_current.add(int(key[1]))
                     del cleaned_post[key]
