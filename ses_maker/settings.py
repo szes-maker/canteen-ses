@@ -25,7 +25,7 @@ SECRET_KEY = ')h0rgw)fug4%m70t73cqyxc80v1fv8lc4%20e^vm-m3qua=k@r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,7 +45,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'ses_maker.urls'
