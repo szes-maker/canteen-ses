@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import re
+import datetime
 
 import requests
 from lxml import html
@@ -272,8 +273,12 @@ class Calendar(dict):
         :rtype: list[int]
         """
         current = self[str(self.selected_year) + '-' + str(self.selected_month).zfill(2)]
-        new = [int(x.split('-')[2]) for x in current]
+        new = [datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in current]
         return new
+
+    @staticmethod
+    def orderable_day():
+        return datetime.timedelta(3 + 1) + datetime.date.today()
 
 
 def get_course_count(page, menu_sequence):

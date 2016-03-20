@@ -57,8 +57,19 @@ form .submit {
     text-align: right;
 }
 
+/*
 ul.date-list {
     display: inline-block;
+}
+*/
+
+ul.date-list li {
+    padding-top: 0.3em;
+    padding-bottom: 0.2em;
+}
+
+a.date {
+    text-decoration: none;
 }
 
 table.menu {

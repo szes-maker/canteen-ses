@@ -16,10 +16,11 @@
     <label for="month">月</label>
     <input type="submit" value="查询"/>
 </form>
+<p>理论上说，现在能订到{{ calendar.orderable_day }}及以后的餐。<p>
 <ul class="date-list" id="l{{ calendar.selected_year }}-{{ calendar.selected_month }}">
-    {% for day in calendar.current %}
+    {% for date in calendar.current %}
         <li>
-            <a href="{% url 'menu' year=calendar.selected_year month=calendar.selected_month day=day %}">{{ calendar.selected_year }}年{{ calendar.selected_month }}月{{ day }}日</a>
+            <a class="date" href="{% url 'menu' year=date.year month=date.month day=date.day %}">{{ date }}&nbsp;&nbsp;{{ date|date:"l" }}</a>
         </li>
     {% empty %}
         <li>本月无可订餐的日期</li>
