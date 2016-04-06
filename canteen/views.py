@@ -134,9 +134,17 @@ def submit(request, year, month, day):
             do_not_order = [do_not_order_original, to_add, to_remove]
 
             status = submit_menu(date, cleaned_post, do_not_order, form_param, cookies)
+
+            selectable_year = request.session.get('selectable_year', None)
+            selected = request.session.get('calendar_selected', None)
+            init_dict = request.session.get('calendar_dict', None)
+            calendar = Calendar(selected, None, selectable_year, init_dict, None)
+
             context = {
                 'name': request.session['name'],
-                'result': status
+                'result': status,
+                'month_list': range(1, 13),
+                'calendar': calendar
             }
             return render(request, 'canteen/result.html', context)
         else:
