@@ -73,6 +73,11 @@ a.date {
     text-decoration: none;
 }
 
+.menu-container {
+    display: flex;
+    justify-content: center;
+}
+
 table.menu {
     border-collapse: collapse;
     margin-bottom: 0.5em;
