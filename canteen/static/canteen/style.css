@@ -9,7 +9,10 @@ header {
 }
 
 .logo {
-    width: 100%;
+    display: block;
+    margin: 0 auto;
+    width: 21em;
+    max-width: 100%;
 }
 
 nav {
