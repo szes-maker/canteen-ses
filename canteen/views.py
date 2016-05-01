@@ -35,40 +35,35 @@ def homepage(request):
 
 def query(request, year, month):
     if request.session.get('id', False):
-        if request.method == 'POST':
-            year = request.POST.get('year', '')
-            month = request.POST.get('month', '')
-            return HttpResponseRedirect(reverse('query', kwargs={'year': year, 'month': month}))
-        else:
-            year, month = int(year), int(month)
+        year, month = int(year), int(month)
 
-            cookies = request.session.get('cookies', None)
-            form_param = request.session.get('calendar_form_param', None)
-            selectable_year = request.session.get('selectable_year', None)
-            selected = request.session.get('calendar_selected', None)
-            init_dict = request.session.get('calendar_dict', None)
-            calendar = Calendar(selected, form_param, selectable_year, init_dict, cookies)
+        cookies = request.session.get('cookies', None)
+        form_param = request.session.get('calendar_form_param', None)
+        selectable_year = request.session.get('selectable_year', None)
+        selected = request.session.get('calendar_selected', None)
+        init_dict = request.session.get('calendar_dict', None)
+        calendar = Calendar(selected, form_param, selectable_year, init_dict, cookies)
 
-            try:
-                calendar.test(year, month)
-            except SessionExpired:
-                request.session.flush()
-                return HttpResponseRedirect('/login/?next={}'.format(request.path))
-            cookies = calendar.cookies
-            context = {
-                'calendar': calendar,
-                'month_list': range(1, 13),
-                'name': request.session['name'],
-                'balance': request.session['balance'],
-                'id': request.session['id']
-            }
-            request.session.update({
-                'cookies': cookies,
-                'calendar_form_param': calendar.form_param,
-                'calendar_dict': calendar,
-                'calendar_selected': [calendar.selected_year, calendar.selected_month]
-            })
-            return render(request, 'canteen/query.html', context=context)
+        try:
+            calendar.test(year, month)
+        except SessionExpired:
+            request.session.flush()
+            return HttpResponseRedirect('/login/?next={}'.format(request.path))
+        cookies = calendar.cookies
+        context = {
+            'calendar': calendar,
+            'month_list': range(1, 13),
+            'name': request.session['name'],
+            'balance': request.session['balance'],
+            'id': request.session['id']
+        }
+        request.session.update({
+            'cookies': cookies,
+            'calendar_form_param': calendar.form_param,
+            'calendar_dict': calendar,
+            'calendar_selected': [calendar.selected_year, calendar.selected_month]
+        })
+        return render(request, 'canteen/query.html', context=context)
     else:
         return HttpResponseRedirect('/login/?next={}'.format(request.path))
 
