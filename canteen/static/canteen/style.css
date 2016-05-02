@@ -45,7 +45,6 @@ nav a {
 #content {
     display: flex;
     justify-content: center;
-    flex-direction: column;
 }
 
 form.login-form div {
@@ -53,7 +52,7 @@ form.login-form div {
 }
 
 form .title {
-    width: 8em;
+    width: 3em;
     float: left;
     text-align: right;
     padding-right: 0.5em;
