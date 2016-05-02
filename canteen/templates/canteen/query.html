@@ -7,5 +7,7 @@
     {{ name }}，余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
+    <div class="query">
     {% include "canteen/full_date_picker.html" %}
+    </div>
 {% endblock %}
