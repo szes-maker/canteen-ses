@@ -62,6 +62,11 @@ form .submit {
     text-align: right;
 }
 
+#ad > img {
+    display: block;
+    width: 100%;
+}
+
 /*
 ul.date-list {
     display: inline-block;
