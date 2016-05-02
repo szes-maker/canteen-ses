@@ -69,6 +69,7 @@ form .submit {
 
 #ad > img {
     width: 33%;
+    width: calc(100% / 3);
     height: 100%;
 }
 
