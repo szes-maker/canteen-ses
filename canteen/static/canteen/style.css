@@ -62,9 +62,14 @@ form .submit {
     text-align: right;
 }
 
+#ad {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 #ad > img {
-    display: block;
-    width: 100%;
+    width: 33%;
+    height: 100%;
 }
 
 /*
