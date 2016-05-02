@@ -15,8 +15,10 @@ header {
     max-width: 100%;
 }
 
-nav {
-    display: inline-block;
+#menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
@@ -38,12 +40,6 @@ nav a {
     font-size: 150%;
     color: #777;
     text-decoration: none;
-}
-
-header .text {
-    float: right;
-    clear: left;
-    padding: 0.5em;
 }
 
 #content {
