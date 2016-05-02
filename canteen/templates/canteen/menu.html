@@ -6,7 +6,6 @@
     {{ id }}，{{ name }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
-<div class="menu-container">
     <form method="post" action="{% url 'submit' year month day %}">
         {% csrf_token %}
         {% for meal in menu %}
@@ -55,5 +54,4 @@
             <input class="menu" type="submit" value="提交">
         {% endif %}
     </form>
-</div>
 {% endblock %}

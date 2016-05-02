@@ -46,6 +46,11 @@ header .text {
     padding: 0.5em;
 }
 
+#content {
+    display: flex;
+    justify-content: center;
+}
+
 form.login-form div {
     margin: 1em;
 }
@@ -74,11 +79,6 @@ ul.date-list li {
 
 a.date {
     text-decoration: none;
-}
-
-.menu-container {
-    display: flex;
-    justify-content: center;
 }
 
 table.menu {
