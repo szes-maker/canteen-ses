@@ -7,10 +7,12 @@
     欢迎，{{ name }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
+    <div id="result-container">
     {% if result %}
         订餐成功<hr>
         {% include "canteen/full_date_picker.html" %}
     {% else %}
         订餐失败
     {% endif %}
+    </div>
 {% endblock %}
