@@ -62,6 +62,7 @@ form .submit {
     text-align: right;
 }
 
+/*
 #ad {
     display: flex;
     flex-flow: row wrap;
@@ -73,7 +74,6 @@ form .submit {
     height: 100%;
 }
 
-/*
 ul.date-list {
     display: inline-block;
 }
