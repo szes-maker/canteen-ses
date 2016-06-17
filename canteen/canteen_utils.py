@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import re
 import datetime
+from hashlib import md5
 
 import requests
 from lxml import html
@@ -116,7 +117,7 @@ class Login(object):
 
         login_form = {
             'username': username,
-            'password': password,
+            'password': md5(password.encode('utf-8')).hexdigest(),
             'lt': lt,
             '_eventId': 'submit',
             'submit': '登录'
