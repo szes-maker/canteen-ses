@@ -9,9 +9,11 @@ header {
 }
 
 .logo {
+/*
     display: block;
     margin: 0 auto;
     width: 21em;
+*/
     max-width: 100%;
 }
 

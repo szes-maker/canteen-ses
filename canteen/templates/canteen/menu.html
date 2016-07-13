@@ -1,6 +1,9 @@
-{% extends "canteen/base.html" %}
+{% extends "canteen/base.html" %}{% load staticfiles %}
 {% block title %}
     {{ year }}-{{ month }}-{{ day }}菜单
+{% endblock %}
+{% block head %}
+<script src="{% static 'canteen/script/price_calc.js' %}"></script>
 {% endblock %}
 {% block header %}
     {{ id }}，{{ name }} <a href="{% url 'logout' %}">退出</a>
@@ -29,7 +32,7 @@
                 </thead>
                 <tbody>
                 {% for course in meal %}
-                    <tr>
+                    <tr class="course">
                         <td>{{ course.num }}</td>
                         <td>{{ course.type }}</td>
                         <td class="name">{{ course.name }}</td>
@@ -45,6 +48,10 @@
                         </td>
                     </tr>
                 {% endfor %}
+                    <tr>
+                        <td class="name" colspan="4">总价</td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         {% empty %}
