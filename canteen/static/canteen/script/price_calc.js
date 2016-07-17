@@ -44,12 +44,12 @@ function prepare() {
         receipt.push(invoice);
 
         var total_indicator = document.createElement("div");
-        total_indicator.setAttribute("class", "total");
+        total_indicator.setAttribute("class", "sub total");
         var indicator_text = document.createTextNode("小计：");
         total_indicator.appendChild(indicator_text);
 
         var total_num = document.createElement("span");
-        total_num.setAttribute("class", "sum");
+        total_num.setAttribute("class", "sum_value");
 
         total_indicator.appendChild(total_num);
 
@@ -70,7 +70,7 @@ function prepare_cashier() {
     cashier_element.appendChild(cashier_text);
 
     var cashier_num = document.createElement("span");
-    cashier_num.setAttribute("class", "sum");
+    cashier_num.setAttribute("class", "sum_value");
     cashier_element.appendChild(cashier_num);
 
     cashier = cashier_num;

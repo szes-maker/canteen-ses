@@ -1,10 +1,11 @@
 body {
-    font-family: "PingFang SC","Hiragino Sans GB","Helvetica Neue","Microsoft Yahei","Noto Sans CJK","Source Han Sans","WenQuanYi Micro Hei",sans-serif;
+    font-family: "PingFang SC","Hiragino Sans GB","Helvetica Neue","Microsoft Yahei","Noto Sans CJK",sans-serif;
     margin: 0;
+    background-color: #f8f8f8;
 }
 
 header {
-    background-color: #f8f8f8;
+    background-color: #202a74;
     margin-bottom: 1em;
 }
 
@@ -17,7 +18,7 @@ header {
     max-width: 100%;
 }
 
-#menu-container {
+#navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,18 +36,34 @@ nav li {
 }
 
 nav li.active {
-    background-color: white;
+    background-color: #f8f8f8;
 }
 
 nav a {
     font-size: 150%;
-    color: #777;
+    color: white;
     text-decoration: none;
+}
+
+nav li.active a {
+    color: #4FC3F7;
+}
+
+#navbar-container .text {
+    color: white;
+}
+
+#navbar-container .text a {
+    color: #F4511E;
 }
 
 #content {
     display: flex;
     justify-content: center;
+}
+
+.login-form, .homepage, .query {
+    background-color: white;
 }
 
 form.login-form div {
@@ -93,14 +110,23 @@ a.date {
 table.menu {
     border-collapse: collapse;
     margin-top: 0.5em;
+    background-color: white;
 }
 
 table.menu th, td {
-    border: 1px solid black;
+    border: 1px solid #c5dbeb;
+    border-left: 0;
+    border-right: 0;
+}
+
+table.menu th {
+    background-color: #bfbfbf;
+    color: white;
 }
 
 table.menu td {
     font-size: 75%;
+    text-align: center;
 }
 
 table.menu td.name {
@@ -110,11 +136,16 @@ table.menu td.name {
 }
 
 table.menu td.selector {
-    font-size: 100%
+    font-size: 100%;
+    text-align: left;
 }
 
 .not-order {
     float: right;
+}
+
+.sub {
+    background-color: #c5dbeb;
 }
 
 .total {
