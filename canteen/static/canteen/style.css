@@ -92,7 +92,7 @@ a.date {
 
 table.menu {
     border-collapse: collapse;
-    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 
 table.menu th, td {
@@ -106,7 +106,7 @@ table.menu td {
 table.menu td.name {
     white-space: nowrap;
     overflow-x: auto;
-    max-width: 5.5em;
+    max-width: 4em;
 }
 
 table.menu td.selector {
@@ -115,6 +115,10 @@ table.menu td.selector {
 
 .not-order {
     float: right;
+}
+
+.total {
+    text-align: right;
 }
 
 input[type="submit"].menu {

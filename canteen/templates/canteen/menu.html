@@ -3,7 +3,7 @@
     {{ year }}-{{ month }}-{{ day }}菜单
 {% endblock %}
 {% block head %}
-<script src="{% static 'canteen/script/price_calc.js' %}"></script>
+    <script src="{% static 'canteen/script/price_calc.js' %}"></script>
 {% endblock %}
 {% block header %}
     {{ id }}，{{ name }} <a href="{% url 'logout' %}">退出</a>
@@ -48,15 +48,12 @@
                         </td>
                     </tr>
                 {% endfor %}
-                    <tr>
-                        <td class="name" colspan="4">总价</td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
         {% empty %}
-        此日无菜单
+            此日无菜单
         {% endfor %}
+        <hr id="separator">
         {% if menu.mutable %}
             <input class="menu" type="submit" value="提交">
         {% endif %}
