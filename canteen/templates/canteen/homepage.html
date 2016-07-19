@@ -4,7 +4,7 @@
     欢迎
 {% endblock %}
 {% block header %}
-    欢迎，{{ name }} <a href="{% url 'logout' %}" class="navbar-link">退出</a>
+    {{ name }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
     <div class="homepage">
