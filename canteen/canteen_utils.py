@@ -179,7 +179,7 @@ def _parse_date_list(page):
 
 
 class Calendar(dict):
-    def __init__(self, selected, form_param, selectable_year, init_dict, cookies):
+    def __init__(self, selected, selectable_year, init_dict, form_param=None, cookies=None):
         """
         :type selected: list[int]
         :type form_param: list[str] or NoneType
@@ -215,7 +215,7 @@ class Calendar(dict):
             1).zfill(2)
         date_string = selected_year + '-' + selected_month
         init_dict = {date_string: _parse_date_list(page)}
-        return cls([int(selected_year), int(selected_month)], form_param, selectable_year, init_dict,
+        return cls([int(selected_year), int(selected_month)], selectable_year, init_dict, form_param,
                    session.extract_cookies())
 
     def query_calendar(self, year, month):

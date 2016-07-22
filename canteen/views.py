@@ -19,7 +19,7 @@ def homepage(request):
             selected = request.session.get('calendar_selected', None)
             selectable_year = request.session.get('selectable_year', None)
             calendar_dict = request.session.get('calendar_dict', None)
-            calendar = Calendar(selected, None, selectable_year, calendar_dict, None)
+            calendar = Calendar(selected, selectable_year, calendar_dict)
 
             context = {
                 'calendar': calendar,
@@ -42,7 +42,7 @@ def query(request, year, month):
         selectable_year = request.session.get('selectable_year', None)
         selected = request.session.get('calendar_selected', None)
         init_dict = request.session.get('calendar_dict', None)
-        calendar = Calendar(selected, form_param, selectable_year, init_dict, cookies)
+        calendar = Calendar(selected, selectable_year, init_dict, form_param, cookies)
 
         try:
             calendar.test(year, month)
@@ -133,7 +133,7 @@ def submit(request, year, month, day):
             selectable_year = request.session.get('selectable_year', None)
             selected = request.session.get('calendar_selected', None)
             init_dict = request.session.get('calendar_dict', None)
-            calendar = Calendar(selected, None, selectable_year, init_dict, None)
+            calendar = Calendar(selected, selectable_year, init_dict)
 
             context = {
                 'name': request.session['name'],
