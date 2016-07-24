@@ -10,11 +10,9 @@ header {
 }
 
 .logo {
-/*
     display: block;
     margin: 0 auto;
-    width: 21em;
-*/
+    width: 720px;
     max-width: 100%;
 }
 
