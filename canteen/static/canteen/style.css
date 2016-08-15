@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #B2EBF2;
+    background-color: #BBDEFB;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
@@ -144,6 +144,7 @@ table.menu th {
 
 table.menu td {
     font-size: 75%;
+    line-height: 150%;
     text-align: center;
 }
 
