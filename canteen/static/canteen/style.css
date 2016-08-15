@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #FFC107;
+    background-color: #B3E5FC;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
@@ -51,14 +51,14 @@ header a#logo-link {
 #org-name {
     margin-left: 4px;
     color: #202a74;
-    font-family: "Adobe Source Code Pro", Consolas, Monaco, monospace;
+    font-family: "Source Code Pro", Consolas, Monaco, monospace;
     font-size: 1.8em;
 }
 
 #bracket-divider {
     margin: 0 8px;
     color: #009688;
-    font-family: "Adobe Source Code Pro", Consolas, Monaco, monospace;
+    font-family: "Source Code Pro", Consolas, Monaco, monospace;
     font-size: 1.5em;
 }
 
@@ -67,11 +67,11 @@ header a#logo-link {
 }
 
 #navbar-container .text {
-    color: #673AB7;
+    color: #FF9800;
 }
 
 #navbar-container .text a {
-    color: #3F51B5;
+    color: #EF6C00;
 }
 
 #content {
