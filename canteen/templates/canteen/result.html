@@ -4,7 +4,7 @@
     在用django-messages之后要被删掉的结果页
 {% endblock %}
 {% block header %}
-    欢迎，{{ name }} <a href="{% url 'logout' %}">退出</a>
+    余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
     <div id="result-container">

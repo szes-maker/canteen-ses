@@ -4,7 +4,7 @@
     {{ calendar.selected_year }}年{{ calendar.selected_month }}月
 {% endblock %}
 {% block header %}
-    {{ name }} <a href="{% url 'logout' %}">退出</a>
+    余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
     <div class="query">

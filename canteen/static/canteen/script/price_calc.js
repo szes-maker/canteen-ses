@@ -56,7 +56,7 @@ function prepare() {
         sum_indicator.push(total_num);
 
         var total = sum(invoice);
-        total_num.textContent = total;
+        total_num.textContent = Math.round(total * 100) / 100; // https://stackoverflow.com/a/11832950
         subtotal.push(total);
         insertAfter(total_indicator, menu);
     }
@@ -85,7 +85,7 @@ function modify_count() {
     receipt[menu][course].amount = parseInt(this.value);
 
     var total = sum(receipt[menu]);
-    sum_indicator[menu].textContent = total;
+    sum_indicator[menu].textContent = Math.round(total * 100) / 100; // https://stackoverflow.com/a/11832950
     subtotal[menu] = total;
 
     checkout();
@@ -105,5 +105,5 @@ function checkout() {
         sum += subtotal[i];
     }
 
-    cashier.textContent = sum;
+    cashier.textContent = Math.round(sum * 100) / 100; // https://stackoverflow.com/a/11832950
 }

@@ -6,7 +6,7 @@
     <script src="{% static 'canteen/script/price_calc.js' %}"></script>
 {% endblock %}
 {% block header %}
-    {{ name }} <a href="{% url 'logout' %}">退出</a>
+    余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
     <form method="post" action="{% url 'submit' year month day %}">

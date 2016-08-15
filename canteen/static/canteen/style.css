@@ -1,63 +1,83 @@
 body {
-    font-family: "PingFang SC","Hiragino Sans GB","Helvetica Neue","Microsoft Yahei","Noto Sans CJK",sans-serif;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", "Microsoft Yahei", "Noto Sans CJK", sans-serif;
     margin: 0;
     background-color: #f8f8f8;
 }
 
 header {
-    background-color: #202a74;
-    margin-bottom: 1em;
+    background-color: #FFC107;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
-.logo {
-    display: block;
-    margin: 0 auto;
-    width: 720px;
-    max-width: 100%;
-}
-
-#navbar-container {
+header#navbar-container {
+    padding: 0 1em;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    height: 64px;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+@media handheld and (orientation: portrait) {
+    header#navbar-container {
+        height: 48px;
+    }
 }
 
-nav li {
+@media handheld and (orientation: landscape) {
+    header#navbar-container {
+        height: 56px;
+    }
+}
+
+header a {
     display: inline-block;
-    padding: 0.5em;
-}
-
-nav li.active {
-    background-color: #f8f8f8;
-}
-
-nav a {
-    font-size: 150%;
-    color: white;
     text-decoration: none;
 }
 
-nav li.active a {
-    color: #4FC3F7;
+header a#logo-link {
+    height: 75%;
+}
+
+#logo {
+    height: 100%;
+}
+
+#org-brand {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#org-name {
+    margin-left: 4px;
+    color: #202a74;
+    font-family: "Adobe Source Code Pro", Consolas, Monaco, monospace;
+    font-size: 1.8em;
+}
+
+#bracket-divider {
+    margin: 0 8px;
+    color: #009688;
+    font-family: "Adobe Source Code Pro", Consolas, Monaco, monospace;
+    font-size: 1.5em;
+}
+
+#app-name {
+    color: #e91e63;
 }
 
 #navbar-container .text {
-    color: #FFEB3B;
+    color: #673AB7;
 }
 
 #navbar-container .text a {
-    color: #F4511E;
+    color: #3F51B5;
 }
 
 #content {
     display: flex;
     justify-content: center;
+    padding-top: 1em;
 }
 
 .login-form, .homepage, .query {
@@ -130,7 +150,7 @@ table.menu td {
 table.menu td.name {
     white-space: nowrap;
     overflow-x: auto;
-    max-width: 4em;
+    max-width: 8em;
 }
 
 table.menu td.selector {
@@ -152,4 +172,32 @@ table.menu td.selector {
 
 input[type="submit"].menu {
     width: 15em;
+}
+
+@media (max-width: 400px) {
+    #org-name {
+        display: none;
+    }
+
+    #app-eng-name {
+        display: none;
+    }
+
+    #navbar-container .text {
+        font-size: 0.9em;
+    }
+
+    table.menu td.name {
+        max-width: 4em;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+    #org-name {
+        display: none;
+    }
+
+    table.menu td.name {
+        max-width: 6em;
+    }
 }

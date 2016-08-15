@@ -25,8 +25,7 @@ def homepage(request):
                 'calendar': calendar,
                 'month_list': range(1, 13),
                 'name': request.session['name'],
-                'balance': request.session['balance'],
-                'id': request.session['id']
+                'balance': request.session['balance']
             }
             return render(request, 'canteen/homepage.html', context=context)
     else:
@@ -90,12 +89,12 @@ def menu(request, year, month, day):
             'not_order_' + date: menu_helper.do_not_order
         })
         context = {
-            'id': request.session['id'],
             'name': request.session['name'],
             'year': year,
             'month': month,
             'day': day,
-            'menu': menu_helper
+            'menu': menu_helper,
+            'balance': request.session['balance']
         }
         return render(request, 'canteen/menu.html', context)
     else:
@@ -137,6 +136,7 @@ def submit(request, year, month, day):
 
             context = {
                 'name': request.session['name'],
+                'balance': request.session['balance'],
                 'result': status,
                 'month_list': range(1, 13),
                 'calendar': calendar
