@@ -1,11 +1,16 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", "Microsoft Yahei", "Noto Sans CJK", sans-serif;
     margin: 0;
-    background-color: #f8f8f8;
+    background: url("background_rhombus_right_bottom.png") right bottom no-repeat #f8f8f8;
+    min-height: 100%;
 }
 
 header {
-    background-color: #BBDEFB;
+    background-color: #3F51B5;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
@@ -48,40 +53,34 @@ header a#logo-link {
     height: 100%;
 }
 
-#org-name {
-    margin-left: 4px;
-    color: #202a74;
-    font-family: "Source Code Pro", Consolas, Monaco, monospace;
-    font-size: 1.8em;
-}
-
-#bracket-divider {
-    margin: 0 8px;
-    color: #009688;
-    font-family: "Source Code Pro", Consolas, Monaco, monospace;
-    font-size: 1.5em;
+#divider {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    height: 80%;
+    margin: 0 1em;
 }
 
 #app-name {
-    color: #e91e63;
+    color: white;
+    font-size: 1.5em;
 }
 
 #navbar-container .text {
-    color: #607D8B;
+    color: #EEEEEE;
 }
 
 #navbar-container .text a {
-    color: #37474F;
+    color: #BDBDBD;
 }
 
 #content {
     display: flex;
     justify-content: center;
-    padding-top: 1em;
+    padding-top: 1.5em;
 }
 
-.login-form, .homepage, .query {
-    background-color: white;
+.login-container {
+    text-align: center;
 }
 
 form.login-form div {
@@ -95,8 +94,14 @@ form .title {
     padding-right: 0.5em;
 }
 
-form .submit {
-    text-align: right;
+/* Copied from GitHub */
+.login-form input[type="submit"] {
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    background-image: linear-gradient(#8add6d, #60b044);
+    border-color: #5ca941;
+    border-radius: 3px;
 }
 
 /*
@@ -175,13 +180,23 @@ input[type="submit"].menu {
     width: 15em;
 }
 
+@media (max-width: 1120px) {
+    body{
+        background-size: 50%;
+    }
+}
+
 @media (max-width: 400px) {
-    #org-name {
-        display: none;
+    body{
+        background-size: contain;
     }
 
     #app-eng-name {
         display: none;
+    }
+
+    #divider {
+        margin: 0 0.5em;
     }
 
     #navbar-container .text {
@@ -193,8 +208,12 @@ input[type="submit"].menu {
     }
 }
 
-@media (min-width: 400px) and (max-width: 600px) {
-    #org-name {
+@media (min-width: 400px) and (max-width: 520px) {
+    body {
+        background-size: 75%;
+    }
+
+    #app-eng-name {
         display: none;
     }
 

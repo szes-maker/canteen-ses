@@ -1,22 +1,22 @@
 {% extends "canteen/base.html" %}{% load staticfiles %}
 {% block title %}登录{% endblock %}
 
-{% block header %}
-    请登录
-{% endblock %}
 {% block content %}
+    <div class="login-container">
+    <img src="{% static 'canteen/eaxperiment_login.png' %}" alt="食验" title="食验" id="login-icon">
     <form class="login-form" action="#" method="post">
         {% csrf_token %}
         <div>
             <label for="username" class="title">用户名</label>
-            <input type="text" name="username" id="username" placeholder="Student ID">
+            <input type="text" name="username" placeholder="Student ID">
         </div>
         <div>
             <label for="password" class="title">密码</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" placeholder="Password">
         </div>
         <div class="submit">
         <input type="submit" value="登录">
         </div>
     </form>
+    </div>
 {% endblock %}
