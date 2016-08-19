@@ -87,13 +87,10 @@ form.login-form div {
     margin: 1em 0;
 }
 
-.login-form input {
-    width: 100%;
-}
-
 /* Copied from Google */
 .login-form input[type="submit"] {
     font-size: 1em;
+    width: 100%;
     border: 1px solid #3079ed;
     border-radius: 3px;
     color: white;
