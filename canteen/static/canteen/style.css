@@ -11,12 +11,12 @@ body {
 }
 
 header {
-    background-color: #3F51B5;
+    background-color: #1a2064;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
 header#navbar-container {
-    padding: 0 1em;
+    padding: 0 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,6 +190,10 @@ input[type="submit"].menu {
 @media (max-width: 400px) {
     body{
         background-size: contain;
+    }
+
+    header#navbar-container {
+        padding: 0 1em;
     }
 
     #app-eng-name {
