@@ -123,7 +123,7 @@ class Login(object):
             'submit': '登录'
         }
         auth = self.session.s_post(login_post_url, login_form, referrer=LOGIN_URL, logged_in=False)
-        auth_status = '<SCRIPT LANGUAGE="JavaScript">' in auth.text
+        auth_status = '登录成功' in auth.text
 
         if auth_status:
             return auth_status, None
