@@ -89,16 +89,22 @@ form.login-form div {
 
 .login-form input {
     box-sizing: border-box;
-    width: 80%
+    width: 80%;
 }
 
 /* Copied from Google */
-.login-form input[type="submit"] {
+/* Dedicated to the designer Grake PCH */
+input[type="submit"].Grake-button {
     font-size: 1em;
     border: 1px solid #3079ed;
     border-radius: 3px;
     color: white;
     background-image: linear-gradient(#4d90fe,#4787ed);
+}
+
+.checkout-button {
+    margin-top: 1em;
+    width: 100%;
 }
 
 /*
@@ -173,8 +179,12 @@ table.menu td.selector {
     text-align: right;
 }
 
-input[type="submit"].menu {
-    width: 15em;
+#tips {
+    width: 20em;
+}
+
+#tips p {
+    margin: 0.5em 0;
 }
 
 @media (max-width: 1120px) {
@@ -207,6 +217,14 @@ input[type="submit"].menu {
     table.menu td.name {
         max-width: 4em;
     }
+
+    #tips {
+        width: 100%;
+    }
+
+    #tips p {
+        margin: 0.5em 1px;
+    }
 }
 
 @media (min-width: 400px) and (max-width: 520px) {
@@ -220,5 +238,13 @@ input[type="submit"].menu {
 
     table.menu td.name {
         max-width: 6em;
+    }
+
+    #tips {
+        width: 100%;
+    }
+
+    #tips p {
+        margin: 0.5em 1px;
     }
 }
