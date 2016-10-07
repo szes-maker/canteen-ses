@@ -96,6 +96,7 @@ form.login-form div {
 /* Dedicated to the designer Grake PCH */
 input[type="submit"].Grake-button {
     font-size: 1em;
+    height: 3em;
     border: 1px solid #3079ed;
     border-radius: 3px;
     color: white;
