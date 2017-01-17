@@ -87,6 +87,12 @@ form.login-form div {
     margin: 1em 0;
 }
 
+img#login-icon {
+    min-width: 250px;
+    width: 12em;
+    max-width: 750px;
+}
+
 .login-form input {
     box-sizing: border-box;
     width: 80%;
