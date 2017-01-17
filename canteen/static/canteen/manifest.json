@@ -1,0 +1,13 @@
+{
+  "name": "食验 Eaxperiment",
+  "short_name": "食验",
+  "start_url": "../../.",
+  "display": "minimal-ui",
+  "background_color": "#1A2064",
+  "description": "来订个餐吧",
+  "icons": [{
+    "src": "eaxperiment_app-180.png",
+    "sizes": "180x180",
+    "type": "image/png"
+  }]
+}
