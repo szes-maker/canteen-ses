@@ -3,7 +3,7 @@
     {{ year }}-{{ month }}-{{ day }}菜单
 {% endblock %}
 {% block head %}
-    <script src="{% static 'canteen/script/price_calc.js' %}"></script>
+    <script async src="{% static 'canteen/script/price_calc.js' %}"></script>
 {% endblock %}
 {% block header %}
     余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
