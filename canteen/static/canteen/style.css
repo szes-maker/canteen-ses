@@ -79,6 +79,12 @@ header a#logo-link {
     padding-top: 1.5em;
 }
 
+@media screen and (max-width: 600px) and (orientation: portrait) {
+    #content {
+        padding-top: 0;
+    }
+}
+
 .login-container {
     text-align: center;
 }
