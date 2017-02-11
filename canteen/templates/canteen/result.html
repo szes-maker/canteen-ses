@@ -7,7 +7,7 @@
     余额：{{ balance }} <a href="{% url 'logout' %}">退出</a>
 {% endblock %}
 {% block content %}
-    <div id="result-container">
+    <div class="query">
     {% if result %}
         订餐成功<hr>
         {% include "canteen/date_picker_full.html" %}
