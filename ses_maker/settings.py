@@ -116,14 +116,6 @@ LOGGING = {
 }
 
 # For easier local development
-if 'POSTGRESQL_PASSWORD' in os.environ:
+if 'IS_PRODUCTION' in os.environ:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['POSTGRESQL_INSTANCE_NAME'],
-        'USER': os.environ['POSTGRESQL_USERNAME'],
-        'PASSWORD': os.environ['POSTGRESQL_PASSWORD'],
-        'HOST': os.environ['POSTGRESQL_PORT_5432_TCP_ADDR'],
-        'PORT': os.environ['POSTGRESQL_PORT_5432_TCP_PORT']
-    }
     DEBUG = False

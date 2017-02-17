@@ -2,5 +2,4 @@ django
 lxml
 requests
 gunicorn
-psycopg2
 whitenoise
