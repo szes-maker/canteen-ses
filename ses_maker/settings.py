@@ -118,4 +118,15 @@ LOGGING = {
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+    db_string = os.environ['
+    DATABASE['default'] = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['MYSQL_INSTANCE_NAME'],
+        'USER': os.environ['MYSQL_USERNAME'],
+        'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'HOST': os.environ['MYSQL_PORT_3306_TCP_ADDR'],
+        'PORT': os.environ['MYSQL_PORT_3306_TCP_PORT']
+    }
+
     DEBUG = False
