@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
 		gcc \
 		gettext \
 		sqlite3 \
-		libmariadbclient18 \
+		libmysqlclient18 \
 		libxslt-dev \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 
