@@ -117,6 +117,8 @@ LOGGING = {
 
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
+    MIDDLEWARE.insert(0, 'django.middleware.gzip.GZipMiddleware')
+    MIDDLEWARE.insert(2, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join('/vol', 'staticfiles')
     DATABASES['default'] = {
