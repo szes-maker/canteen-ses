@@ -118,7 +118,7 @@ LOGGING = {
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    DATABASE['default'] = {
+    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ['MYSQL_INSTANCE_NAME'],
         'USER': os.environ['MYSQL_USERNAME'],
