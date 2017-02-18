@@ -96,7 +96,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/daocloud-static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGGING = {
@@ -118,6 +118,7 @@ LOGGING = {
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATIC_ROOT = os.path.join('/vol', 'staticfiles')
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ['MYSQL_INSTANCE_NAME'],
