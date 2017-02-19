@@ -39,7 +39,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -117,16 +116,32 @@ LOGGING = {
 
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
-    MIDDLEWARE.insert(0, 'django.middleware.gzip.GZipMiddleware')
-    MIDDLEWARE.insert(2, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    STATIC_ROOT = os.path.join('/vol', 'staticfiles')
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['MYSQL_INSTANCE_NAME'],
-        'USER': os.environ['MYSQL_USERNAME'],
-        'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        'HOST': os.environ['MYSQL_PORT_3306_TCP_ADDR'],
-        'PORT': os.environ['MYSQL_PORT_3306_TCP_PORT']
-    }
     DEBUG = False
+
+    if 'IS_DAOCLOUD' in os.environ:
+        MIDDLEWARE.insert(0, 'django.middleware.gzip.GZipMiddleware')
+        STATIC_ROOT = os.path.join('/vol', 'staticfiles')
+        DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+            'NAME': os.environ['MYSQL_INSTANCE_NAME'],
+            'USER': os.environ['MYSQL_USERNAME'],
+            'PASSWORD': os.environ['MYSQL_PASSWORD'],
+            'HOST': os.environ['MYSQL_PORT_3306_TCP_ADDR'],
+            'PORT': os.environ['MYSQL_PORT_3306_TCP_PORT']
+        }
+
+    if 'IS_CLOUDFOUNDRY' in os.environ:
+        import json
+        cf_database = json.loads(os.environ['VCAP_SERVICES'])['mysql'][0]['credentials']
+        DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+            'NAME': cf_database['name'],
+            'USER': cf_database['username'],
+            'PASSWORD': cf_database['password'],
+            'HOST': cf_database['host'],
+            'PORT': cf_database['port']
+        }

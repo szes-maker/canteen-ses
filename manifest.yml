@@ -1,0 +1,11 @@
+---
+applications:
+- path: .
+  name: canteen-ses
+  host: canteen-ses
+  buildpack: https://github.com/cloudfoundry/buildpack-python.git
+  command: ./cf-entrypoint.sh
+  domain: mybluemix.net
+  env: 
+    IS_PRODUCTION: 1
+    IS_CLOUDFOUNDRY: 1
