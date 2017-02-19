@@ -114,6 +114,8 @@ LOGGING = {
     },
 }
 
+SESSION_COOKIE_AGE = 60 * 60 * 24
+
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
