@@ -183,11 +183,10 @@ def login(request):
             cookies = login_helper.session.extract_cookies()
 
         request.session['cookies'] = cookies
-    else:
-        request.session['url'] = request.GET.get('next', '/')
 
     if request.session.get('id', False):
-        return HttpResponseRedirect(request.session['url'])
+        # If parameter 'next' exist in URL, redirect user to its value
+        return HttpResponseRedirect(request.GET.get('next', '/'))
     else:
         return render(request, 'canteen/login.html')
 
