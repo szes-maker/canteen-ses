@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", calculator);
+window.addEventListener("load", calculator);
 
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
