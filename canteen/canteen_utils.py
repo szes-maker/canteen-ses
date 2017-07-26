@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import re
 import datetime
-from hashlib import md5
 
 import requests
 from lxml import html
@@ -15,14 +14,14 @@ application/x-ms-xbap, */*',
     'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/7.0)'  # 伪装成Windows 7 IE 11（兼容性视图）
 }
 
-LOGIN_URL = 'http://gzb.szsy.cn:3000/cas/login'
+LOGIN_URL = 'http://passport-yun.szsy.cn/login?service=http://gzb.szsy.cn/card/Default.aspx'
 CARD_SYSTEM_LOGIN_URL = 'http://gzb.szsy.cn/card/'
 CALENDAR_URL = 'http://gzb.szsy.cn/card/Restaurant/RestaurantUserMenu/RestaurantUserSelect.aspx'
 MENU_URL = 'http://gzb.szsy.cn/card/Restaurant/RestaurantUserMenu/RestaurantUserMenu.aspx'
 
 MEAL_NAME = ('早餐', '午餐', '晚餐')
 
-logined_skeleton_form = {
+post-login_skeleton_form = {
     '__EVENTARGUMENT': '',
     '__LASTFOCUS': ''
 }
@@ -70,7 +69,7 @@ class Session(requests.Session):
         if referrer is not None:
             self.headers['Referer'] = referrer
         if logged_in:
-            real_data = logined_skeleton_form.copy()
+            real_data = post-login_skeleton_form.copy()
             real_data.update(data)
         else:
             real_data = data
@@ -91,66 +90,50 @@ class Login(object):
 
     def login_cas(self, username, password, cas_param=None):
         """
-        教务系统使用CAS中央登陆，以是否存在跳转页面的特征判断登录是否成功，见reference.txt
-        若成功，返回True, 下一步需要的RequestsCookieJar
-        若失败，返回重新登陆需要的[JSESSIONID, lt], 以dict形式存储的Cookie
+        教务系统使用CAS中央登陆，本实现以返回的页面是否存在“认证信息无效。”判断是否登录成功
+        若成功，返回姓名和账户余额
+        若失败，返回重新登陆需要的[lt, execution]
         :type username: str
         :type password: str
         :type cas_param: list
         :param username: 用户名
         :param password: 密码
-        :param cas_param: 上次登录返回的[jsessionid, lt]
+        :param cas_param: 上次登录返回的[lt, execution]
         :rtype: (bool, list[str])
         """
         if cas_param is None:
-            # 据观察，只有在第一次访问，即Cookie中没有JSESSIONID时，页面中的地址才会带上JSESSIONID
-            # 说真的，这步没啥必要。不过，尽量模拟得逼真点吧
-            # 而lt是会变化的
+            # 首次访问，须获取页面表单中CAS登录需要的参数
             login_page = self.session.s_get(LOGIN_URL, logged_in=False)
-            jsessionid = re.search('jsessionid=(.*?)"', login_page.text).group(1)
             lt = re.search('name="lt" value="(.*?)"', login_page.text).group(1)
-            login_post_url = LOGIN_URL + ';jsessionid=' + jsessionid
+            execution = re.search('name="execution" value="(.*?)"', login_page.text).group(1)
         else:
-            jsessionid = cas_param[0]
-            lt = cas_param[1]
-            login_post_url = LOGIN_URL
+            lt = cas_param[0]
+            execution = cas_param[1]
 
         login_form = {
             'username': username,
-            'password': md5(password.encode('utf-8')).hexdigest(),
+            'password': password,
             'lt': lt,
-            '_eventId': 'submit',
-            'submit': '登录'
+            'execution': execution,
+            '_eventId': 'submit'
         }
-        auth = self.session.s_post(login_post_url, login_form, referrer=LOGIN_URL, logged_in=False)
-        auth_status = '登录成功' in auth.text
+        auth = self.session.s_post(LOGIN_URL, login_form, referrer=LOGIN_URL, logged_in=False)
+        auth_status = '认证信息无效。' in auth.text
 
         if auth_status:
-            return auth_status, None
-        else:
-            # lt是会变化的
+            # 存下本次失败登录返回的CAS参数，供下次使用
             lt = re.search('name="lt" value="(.*?)"', auth.text).group(1)
-            return auth_status, [jsessionid, lt]
+            execution = re.search('name="execution" value="(.*?)"', auth.text).group(1)
+            return auth_status, [lt, execution]
 
-    def login_card_system(self):
-        """
-        登录“一卡通”系统
-        :return: (用户的姓名, 卡中的余额)
-        :rtype: (str)
-        """
-        card_login = self.session.s_get(CARD_SYSTEM_LOGIN_URL,
-                                        referrer='http://gzb.szsy.cn:4000/lcconsole/login!getSSOMessage.action')
-        order_welcome_page = card_login.text  # 此处会302到欢迎页
-        name = re.search(r'<span id="LblUserName">当前用户：(.*?)</span>', order_welcome_page).group(1)
-        balance = re.search(r'<span id="LblBalance">帐户余额：(.*?)元</span>', order_welcome_page).group(1)
+        name = re.search(r'<span id="LblUserName">当前用户：(.*?)</span>', auth.text).group(1)
+        balance = re.search(r'<span id="LblBalance">帐户余额：(.*?)元</span>', auth.text).group(1)
 
-        return name, balance
+        return auth_status, [name, balance]
 
     def canteen_logout(self):
-        """进行中央退出"""
-        self.session.s_get('http://gzb.szsy.cn:4000/lcconsole/logout.jsp', referrer='http://gzb.szsy.cn:4000/',
-                           logged_in=False)
-        self.session.s_get('http://gzb.szsy.cn/card/Logout.aspx', referrer='http://gzb.szsy.cn:4000/', logged_in=False)
+        """进行退出，此处直接进行CAS退出，没有先进行教务系统的退出（因为懒）"""
+        self.session.s_get('http://passport-yun.szsy.cn/logout', referrer='http://gzb.szsy.cn/card/Default.aspx', logged_in=False)
         del self.session
 
 

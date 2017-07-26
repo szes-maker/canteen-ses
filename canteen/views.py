@@ -159,20 +159,19 @@ def login(request):
         login_helper = Login(cookies)
         auth_status, payload = login_helper.login_cas(username, password, cas_param)
 
-        if auth_status:
+        if not auth_status:
             # 用于清理
             try:
                 del request.session['cas_param']
             except KeyError:
                 pass
 
-            name, balance = login_helper.login_card_system()
             calendar = Calendar.calendar_init(login_helper.session)
             cookies = calendar.cookies
             request.session.update({
                 'id': username,
-                'name': name,
-                'balance': balance,
+                'name': payload[0],
+                'balance': payload[1],
                 'calendar_form_param': calendar.form_param,
                 'calendar_dict': calendar,
                 'selectable_year': calendar.selectable_year,
