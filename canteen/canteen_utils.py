@@ -21,7 +21,7 @@ MENU_URL = 'http://gzb.szsy.cn/card/Restaurant/RestaurantUserMenu/RestaurantUser
 
 MEAL_NAME = ('早餐', '午餐', '晚餐')
 
-post-login_skeleton_form = {
+post_login_skeleton_form = {
     '__EVENTARGUMENT': '',
     '__LASTFOCUS': ''
 }
@@ -69,7 +69,7 @@ class Session(requests.Session):
         if referrer is not None:
             self.headers['Referer'] = referrer
         if logged_in:
-            real_data = post-login_skeleton_form.copy()
+            real_data = post_login_skeleton_form.copy()
             real_data.update(data)
         else:
             real_data = data
