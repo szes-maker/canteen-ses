@@ -247,6 +247,10 @@ table.menu td.selector {
     #tips p {
         margin: 0.5em 1px;
     }
+
+    #month-selector {
+        text-align: center;
+    }
 }
 
 @media (min-width: 400px) and (max-width: 520px) {
@@ -268,5 +272,9 @@ table.menu td.selector {
 
     #tips p {
         margin: 0.5em 1px;
+    }
+
+    #month-selector {
+        text-align: center;
     }
 }

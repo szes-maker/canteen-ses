@@ -1,14 +1,12 @@
-<form action="{% url 'homepage' %}" method="post">
+<form action="{% url 'homepage' %}" method="post" id="month-selector">
     {% csrf_token %}
-    <div id="month-selector">
-        <input type="hidden" name="year" value="{{ calendar.selected_year }}"/>
-        <select id="month" name="month">
-            {% for month in month_list %}
-                <option value="{{ month }}"{% if month == calendar.selected_month %}
-                        selected="selected"{% endif %}>{{ month }}</option>
-            {% endfor %}
-        </select>
-        <label for="month">月</label>
-        <input type="submit" value="查询"/>
-    </div>
+    <input type="hidden" name="year" value="{{ calendar.selected_year }}"/>
+    <select id="month" name="month">
+        {% for month in month_list %}
+            <option value="{{ month }}"{% if month == calendar.selected_month %}
+                    selected="selected"{% endif %}>{{ month }}</option>
+        {% endfor %}
+    </select>
+    <label for="month">月</label>
+    <input type="submit" value="查询"/>
 </form>
