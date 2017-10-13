@@ -127,6 +127,7 @@ def submit(request, year, month, day):
             to_remove = list(do_not_order_original - do_not_order_current)
             do_not_order = [do_not_order_original, to_add, to_remove]
 
+            # FIXME: It doesn't handle SessionExpired
             status = submit_menu(date, cleaned_post, do_not_order, form_param, cookies)
 
             selectable_year = request.session.get('selectable_year', None)

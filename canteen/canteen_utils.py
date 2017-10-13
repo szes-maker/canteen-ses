@@ -52,7 +52,8 @@ class Session(requests.Session):
             self.headers['Referer'] = referrer
         request = super().get(url, params=params)
 
-        if LOGIN_URL in request.url and logged_in:
+        # 会话过期后，服务器发送302将用户重定向到登录页，service的值为目标地址
+        if 'http://passport-yun.szsy.cn/login?service=' in request.url and logged_in:
             raise SessionExpired
         return request
 
