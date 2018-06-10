@@ -2,5 +2,6 @@ django<2.0
 lxml
 requests
 gunicorn
-mysqlclient
+psycopg2
+dj-database-url
 whitenoise

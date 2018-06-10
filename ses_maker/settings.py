@@ -136,14 +136,6 @@ if 'IS_PRODUCTION' in os.environ:
         }
 
     if 'IS_CLOUDFOUNDRY' in os.environ:
-        import json
-        cf_database = json.loads(os.environ['VCAP_SERVICES'])['cleardb'][0]['credentials']
-        DATABASES['default'] = {
-            'ENGINE': 'django.db.backends.mysql',
-            'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
-            'NAME': cf_database['name'],
-            'USER': cf_database['username'],
-            'PASSWORD': cf_database['password'],
-            'HOST': cf_database['hostname'],
-            'PORT': cf_database['port']
-        }
+        import json, dj_database_url
+        url = json.loads(os.environ['VCAP_SERVICES'])['elephantsql'][0]['credentials']['uri']
+        DATABASES['default'] = dj_database_url.parse(url)
