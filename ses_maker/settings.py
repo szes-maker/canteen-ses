@@ -139,3 +139,6 @@ if 'IS_PRODUCTION' in os.environ:
         import json, dj_database_url
         url = json.loads(os.environ['VCAP_SERVICES'])['elephantsql'][0]['credentials']['uri']
         DATABASES['default'] = dj_database_url.parse(url)
+
+        SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+        SESSION_FILE_PATH = '/home/vcap/tmp'
