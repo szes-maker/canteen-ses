@@ -119,7 +119,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24
 # For easier local development
 if 'IS_PRODUCTION' in os.environ:
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DEBUG = False
 
     if 'IS_DAOCLOUD' in os.environ:
