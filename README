@@ -1,4 +1,5 @@
 ** OBSOLETED BY THE NEW SYSTEM **
 
+已经过气了的辅助深圳实验学校高中部学生订餐的网站
 A Django application which utilizes Python 3 to build a nice UI for the food ordering system in Shenzhen Experimental School (Senior Section).
 It's poorly written. Please blame.

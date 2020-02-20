@@ -4,7 +4,7 @@ applications:
   name: canteen-ses
   buildpacks:
     - https://github.com/cloudfoundry/buildpack-python.git
-  command: ./cf-entrypoint.sh\
+  command: ./cf-entrypoint.sh
   env: 
     IS_PRODUCTION: 1
     IS_CLOUDFOUNDRY: 1
